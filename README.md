@@ -1,143 +1,142 @@
+# Full Stack URL Shortener
 
-# AffordMed Full Stack Submission – Yash Kansal (Roll No: 80)
+## 👤 Info
 
-## 🔧 Project Overview
-This project implements a complete Full Stack URL Shortener Microservice with:
-- Authentication via clientId/clientSecret
-- URL shortening with optional custom shortcodes
-- Expiry handling
-- Redirection + stats tracking
-- Frontend UI using React + Material UI
+- **GitHub Username:** [Kansal-ji](https://github.com/Kansal-ji)  
+- **Roll Number:** 80
 
 ---
 
-## 📁 Folder Structure
+## Project Structure
 
+```
 80/
 ├── Logging Middleware/
-├── Backend/
-├── Frontend/
+│   └── index.js
+├── Backend Test Submission/
+│   ├── app.js
+│   ├── server.js
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   ├── controllers/
+│   └── .env
+├── Frontend Test Submission/
+│   ├── src/
+│   │   ├── App.js
+│   │   ├── components/
+│   │   └── config.js
+│   └── public/
+└── README.md
 
-yaml
-Copy
-Edit
+````
 
 ---
 
-## 📌 Setup Instructions
+## Project Overview
 
-### 🔹 1. Logging Middleware
-- Located in `Logging Middleware/index.js`
-- Used in both backend and frontend to log:
-  - HTTP method
-  - Timestamp
-  - URL
-  - Response time
+This project is a **URL Shortener Microservice** built as part of the Full Stack Project evaluation.
 
-### 🔹 2. Backend
-- Install dependencies:
-  ```bash
-  cd Backend
-  npm install
-Set up MongoDB in urlModel.js
+### Key Functionalities
 
-Run the server:
+- Shorten long URLs (custom or auto shortcode)
+- Set expiry (default 30 minutes)
+- Track click statistics
+- Geo & referer info tracking
+- Secure access with `clientId` and `clientSecret`
+- Full logging middleware for all requests
 
-bash
-Copy
-Edit
+---
+
+## Tech Stack
+
+| Layer      | Technology            |
+|------------|------------------------|
+| Frontend   | React + Material UI    |
+| Backend    | Node.js, Express       |
+| Database   | MongoDB (Cloud Atlas)  |
+| Logging    | Custom Middleware      |
+
+---
+
+## Setup Instructions
+
+### 1. Clone the Repo
+
+```bash
+git clone https://github.com/Kansal-ji/80.git
+cd 80
+````
+
+### 2. Backend Setup
+
+```bash
+cd "Backend Test Submission"
+npm install
+touch .env
+```
+
+Add the following to `.env`:
+
+```env
+MONGO_URI=your_mongo_connection_string
+PORT=3000
+CLIENT_ID=your_client_id
+CLIENT_SECRET=your_client_secret
+```
+
+Start the server:
+
+```bash
 node server.js
-🔹 3. Frontend
-Create .env:
+```
 
-ini
-Copy
-Edit
-REACT_APP_BACKEND_URL=http://localhost:3000
-REACT_APP_CLIENT_ID=yourClientID
-REACT_APP_CLIENT_SECRET=yourClientSecret
-Install and run:
+---
 
-bash
-Copy
-Edit
-cd Frontend
+### 3. Frontend Setup
+
+```bash
+cd "../Frontend Test Submission"
 npm install
 npm start
-📲 API Routes
-POST /shorturls
-Body:
+```
 
-json
-Copy
-Edit
+---
+
+## API Endpoints
+
+### Auth Headers
+
+Every request must include:
+
+```
+clientid: your_client_id
+clientsecret: your_client_secret
+```
+
+### POST `/shorturls`
+
+```json
 {
   "url": "https://example.com",
-  "shortcode": "optional-code",
-  "validity": 30
+  "shortcode": "customcode",     
+  "validity": 10                 
 }
-GET /shorturls/:shortcode
-Returns stats for that URL
+```
 
-GET /:shortcode
-Redirects to original URL
+### GET `/shorturls/:shortcode`
 
-🛠️ Tools & Tech
-Frontend: React, Material UI
-
-Backend: Node.js, Express, MongoDB
-
-Logging: Custom middleware
-
-✅ Completed Features
- Auth using headers
-
- URL shortening
-
- Stats tracking (clicks, IP, referer)
-
- Expiry logic
-
- Custom shortcodes
-
- Logs saved in logs.txt & console
-
- Functional UI
-
-yaml
-Copy
-Edit
+Returns stats and metadata about the shortened URL.
 
 ---
 
-# 📸 Screenshot Examples (what to capture)
+## Logs
 
-Create a folder called `screenshots/` and include:
-- Shortener page working (form filled + results)
-- Stats page showing stats
-- Terminal showing logs
-- MongoDB Compass view (optional)
-- Screenshot of pushed repo + README
+Custom logging middleware records:
 
----
+* Timestamp
+* HTTP Method
+* Requested URL
+* Response Time
 
-# ✅ Final Submission – GitHub Push
-
-### ⚠️ IMPORTANT RULES:
-- Repo name: `80` (your roll number)
-- Branch: `main` only
-- Commit message: `Initial full stack project submission – Yash Kansal`
-- Push all 3 folders into root
-- Include `.env.example`, not real `.env`
-
----
-
-### ✅ Push Command:
-```bash
-cd ~/Desktop/80
-git init
-git remote add origin https://github.com/Kansal-ji/80.git
-git add .
-git commit -m "Initial full stack project submission – Yash Kansal"
-git branch -M main
-git push -u origin main
+Logs are output to the console during every API call.
