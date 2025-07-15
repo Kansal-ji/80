@@ -146,11 +146,11 @@ Logs are output to the console during every API call.
 ## Output Screenshots
 
 ### Shorten URL Page (Form Input)
-![Shorten URL Page](./Screenshots/ui-shorturl.png)
+![Shorten URL Page](./ui-shorturl.png)
 
 ### Shorten URL Response
-![Shorten URL Response](./Screenshots/ui-response.png)
+![Shorten URL Response](./ui-response.png)
 
 ### URL Stats Page
-![URL Stats Page](./Screenshots/ui-stats.png)
+![URL Stats Page](./ui-stats.png)
 
